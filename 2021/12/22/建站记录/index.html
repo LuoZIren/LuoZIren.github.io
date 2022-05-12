@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ereryuyezi.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="写在前面历时两天，终于完成了博客搭建。不算麻烦，但是“眼花缭乱”的Error实在让我这种初入码海的小菜鸟慌乱和开眼，体会到了程序工作人员debug到哭的感觉——前一秒还春风得意，结果一个hexo d，好嘛，404NotFound，求求你了外星人，把我的网页还回来吧！ 另外这篇文章仅是笔者为记录和备忘而作，并非教程！如果能意外的帮你解决了一些麻烦，那我很开心~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建站记录">
+<meta property="og:url" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="有间">
+<meta property="og:description" content="写在前面历时两天，终于完成了博客搭建。不算麻烦，但是“眼花缭乱”的Error实在让我这种初入码海的小菜鸟慌乱和开眼，体会到了程序工作人员debug到哭的感觉——前一秒还春风得意，结果一个hexo d，好嘛，404NotFound，求求你了外星人，把我的网页还回来吧！ 另外这篇文章仅是笔者为记录和备忘而作，并非教程！如果能意外的帮你解决了一些麻烦，那我很开心~">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ereryuyezi.cn/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404168977781.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404973829521.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404976266922.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050734213934.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404982303155.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404982633266.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404983119437.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404983816238.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404984258869.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164049845824910.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164049859364911.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164049866596312.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050098776913.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050115362914.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050124764915.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050130287516.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050134347917.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050137614818.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050153731521.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050939262235.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050954387636.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050969673637.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050981212838.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050984630639.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050990643340.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050993494741.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051001473242.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051004568543.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/image-20211226172402436.png">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051098136845.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051303000946.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051309489047.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051312706448.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051316999249.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051324826250.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051328219251.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051340980052.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051351096853.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050427897022.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050435108323.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050439059324.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050517734229.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/llll.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051373844354.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405145685171.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405150797032.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405232840148.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405233539459.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405220285064.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405228447885.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405231018276.webp">
+<meta property="og:image" content="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404204073192.webp">
+<meta property="article:published_time" content="2021-12-22T09:58:44.000Z">
+<meta property="article:modified_time" content="2021-12-26T14:34:02.291Z">
+<meta property="article:author" content="叶三秋">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ereryuyezi.cn/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404168977781.webp">
+
+<link rel="canonical" href="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>建站记录 | 有间</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="有间" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">有间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="叶三秋">
+      <meta itemprop="description" content="若炬火不在，则你我皆是微芒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="有间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          建站记录
+        </h1>
+
+        <div class="post-meta">
+        
+         
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-22 17:58:44" itemprop="dateCreated datePublished" datetime="2021-12-22T17:58:44+08:00">2021-12-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-26 22:34:02" itemprop="dateModified" datetime="2021-12-26T22:34:02+08:00">2021-12-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>历时两天，终于完成了博客搭建。不算麻烦，但是“眼花缭乱”的Error实在让我这种初入码海的小菜鸟慌乱和开眼，体会到了程序工作人员debug到哭的感觉——前一秒还春风得意，结果一个<code>hexo d</code>，好嘛，404NotFound，求求你了外星人，把我的网页还回来吧！</p>
+<p>另外这篇文章仅是笔者为记录和备忘而作，并非教程！如果能意外的帮你解决了一些麻烦，那我很开心~</p>
+<span id="more"></span>
+
+<h2 id="错误记录"><a href="#错误记录" class="headerlink" title="错误记录"></a>错误记录</h2><p>fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/.......&#39;">https://github.com/.......&#39;</a>: OpenSSL SSL_read: Connection was reset, errno 10054</p>
+<p><img src="/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404168977781.webp" alt="temp"></p>
+<p><strong>产生原因：</strong>一般是这是因为服务器的SSL证书没有经过第三方机构的签署，</p>
+<p><strong>解决方式：</strong></p>
+<ol>
+<li><p>方法1 | 解除ssl验证：<code>git config --global http.sslVerify &quot;false&quot;</code> </p>
+</li>
+<li><p>方法2 | 更改：<strong>…\themes\你正在使用的主题\.git\cofig</strong>   </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">	url = https://github.com/×××/×××.git</span><br><span class="line">	fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line">	</span><br><span class="line">更改为：</span><br><span class="line"></span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">	url = http://github.com/×××/×××.git</span><br><span class="line">	fetch = +refs/heads/*:refs/remotes/origin/*</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">用途</th>
+<th align="center">官网主页下载</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>Git</strong></td>
+<td align="center">分布式的版本管理系统</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></td>
+</tr>
+<tr>
+<td align="center"><strong>Node.js</strong></td>
+<td align="center">一种javascript的运行环境，能够使得javascript脱离浏览器运行</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a></td>
+</tr>
+<tr>
+<td align="center">NotePad3</td>
+<td align="center">不管用啥，总之最好别用Windows自带的记事本</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.rizonesoft.com/downloads/">Rizonesoft</a></td>
+</tr>
+<tr>
+<td align="center">Typora</td>
+<td align="center">Markdown编辑器</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://typora.io/">Typora</a></td>
+</tr>
+</tbody></table>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>整个流程来自知乎网友<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/mai-nv-hai-de-xiao-huo-chai-35-19">枫叶</a>的回答：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客（超详细） - 知乎</a>，笔者仅对瑕疵和说明、操作模糊处进行补足，锦上添花而已。</p>
+<h3 id="注册Github账户"><a href="#注册Github账户" class="headerlink" title="注册Github账户"></a>注册Github账户</h3><p>这套方案是通过Github+Hexo的组合搭建博客，自然需要注册一个<a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>的帐户，为保证注册以及后续操作顺利，需备好过墙梯</p>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>一路<code>Next</code>就可，唯一可能需要修改的地方是安装路径，具体位置看个人习惯</p>
+<h3 id="Git和Github的绑定，并通过Git提交文件"><a href="#Git和Github的绑定，并通过Git提交文件" class="headerlink" title="Git和Github的绑定，并通过Git提交文件"></a>Git和Github的绑定，并通过Git提交文件</h3><p>从这开始，操作逐渐麻烦。Git可以帮助我们管理Github仓库中的文件，删除或者上传。且如果要删除Github仓库中的单个文件，只能通过Git，Github网站本身仅提供整个仓库的删除，并不支持单个文件的删除。</p>
+<p>第一步：生成并复制密匙文件。我们要用git上传文件到GitHub首先得利用SSH登录远程主机，而登录方式有两种：一种是口令登录；另一种是公钥登录。口令登录每次都要输入密码十分麻烦，而公钥登录就省去了输入密码的步骤，所以我们选择公钥授权。</p>
+<p>首先我们得在 GitHub 上添加 SSH key 配置，要想生成SSH key，就要先安装 SSH，不过我们安装了 Git Bash，其应该自带了 SSH 。在磁盘根目录下新建文件夹 Test ，然后进入。在 Test 中，打开 Git Bash ，输入：<code>ssh</code> 查看SSH是否安装。</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404973829521.webp" alt="temp" style="zoom: 50%;" />
+
+
+
+<p>确认已安装后，输入<code>ssh-keygen -t rsa</code> ，意为以RSA算法生成一个密匙文件。输入命令后连续敲击四下 Enter 键 ，Git Bash 界面中会显示密匙文件地址，Windows系统，一般是 C:&#x2F;Users&#x2F;ASUS&#x2F;.ssh 路径下面。</p>
+<p>之后依次执行以下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/.ssh</span><br><span class="line">$ ls</span><br><span class="line">$ cat id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>执行完毕后，前面生成的密匙会出现在 Git Bash 的界面，复制 ssh-rsa …… 开头的密匙串，包括 ssh-rsa 。不过需要注意的是：git中的复制粘贴不是 Ctrl+C 和 Ctrl+V，而是 Ctrl+insert 和 Shift+insert ，笔记本电脑可能需要 Fn 键辅助</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404976266922.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>第二步：与Github绑定</p>
+<p>登陆<a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>： <code>右上角个人头像 → Setting → SSH and GPG keys → New SSH key</code> ，将复制的 ssh-rsa …… 开头的密匙串粘贴到 Key 栏中，Title 填写与否皆可，为便于日后识别，可填入 Blog 。信息填写完成后，点击 <code>Add SSH key</code></p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050734213934.webp" alt="temp" style="zoom:33%;" />
+
+
+
+<p>返回 Test 文件夹下，打开 Git Bash ，输入 <code>ssh -T git@github.com</code> ，第一次连接，可能会出现 <code>.......Are you sure you want to continue connecting(yes/no/[fingerprint])?</code> 输入 <code>yes</code> ，出现 <code>Hi 你的Github-ID! ......</code> 代表连接成功，祝贺！ </p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404982303155.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404982633266.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>第三步：提交文件</p>
+<p>首先将Github仓库clone到你的电脑中：在 Test 文件夹中，打开 Git Bash ，输入：<code>git clone 你的仓库地址</code> 例如：<code>git clone https://github.com/×××/×××.git</code> ，如果网络连接顺畅，此时在 Test 文件夹下应该多了一个文件夹，该文件夹名称就是你的Github仓库名称。</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404983119437.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>此时我们在此文件夹下新建一个 text.txt 文件，在此文件中打开 Git Bash ，然后输入 <code>git status</code> 查看仓库状态，如无意外，新建的 text.txt 文件会被标红显示。原因是该文件未被加入本地仓库中</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404983816238.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>我们通过 <code>git add text.txt</code> 将其加入临时缓存区，然后通过 <code>git commit -m &quot;commit text file&quot;</code> 提交到本地仓库</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404984258869.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>如果你是第一次提交的话，会让你输入用户名和邮箱</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164049845824910.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>不过不用着急，再依次输入两行代码即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.email &quot;你的Github注册邮箱&quot;</span><br><span class="line">$ git config --global user.name &quot;你的Github-ID&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>完成后输入：<code>git log</code> 命令查看提交日志:</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164049859364911.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>此时再输入 <code>git status</code> 查看一下仓库状态，text.txt 的标红已经消失，说明它已经成功提交。现在输入 <code>git push origin main</code> 命令，将本地仓库提交到远程仓库。第一次上传到远程仓库需要输入密码，此密码为你的Github账号密码，输入即可</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164049866596312.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<hr>
+<h3 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h3><p>购买域名有几个网站，可以在<a target="_blank" rel="noopener" href="https://sg.godaddy.com/zh">GoDaddy</a>上，也可以在<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/">万网</a>，<a target="_blank" rel="noopener" href="https://cloud.tencent.com/?fromSource=gwzcw.2212127.2212127.2212127&utm_medium=cpd&utm_id=gwzcw.2212127.2212127.2212127">腾讯云</a>等网站购买，我是在万网上购买的，一个.com的域名一年百元以内。首先在<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/domain/">万网</a>查询你想要的域名是否已经被注册：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050098776913.webp" alt="temp" style="zoom: 33%;" />
+
+
+
+<p>如果没有被注册，就点击加入清单，然后立即购买：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050115362914.webp" alt="temp" style="zoom: 33%;" />
+
+
+
+<p>先选择你要的年限，再点击<em>个人</em>，接着点击创建新的信息模板：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050124764915.webp" alt="temp" style="zoom: 50%;" />
+
+
+
+<p>填完下图信息，点击保存即可：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050130287516.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>接下来，先验证邮箱，再实名认证：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050134347917.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>验证邮箱即登录填的邮箱，然后打开万网给你发的邮件验证，实名认证需要上传身份证，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050137614818.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>上面说验证需要3-5个工作日，此时模板还是未认证状态，但是也可以支付，勾选模板，再勾选我已阅读，点击立即购买；支付成功后，等待认证就可以了，其实我没等多久就认证成功了，也不需要几天。</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050153731521.webp" alt="temp" style="zoom: 50%;" />
+
+
+
+<hr>
+<h3 id="安装node-js和Hexo"><a href="#安装node-js和Hexo" class="headerlink" title="安装node.js和Hexo"></a>安装node.js和Hexo</h3><h4 id="node-js安装"><a href="#node-js安装" class="headerlink" title="node.js安装"></a>node.js安装</h4><img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050939262235.webp" alt="temp" style="zoom: 33%;" />
+
+
+
+<p>如上图，直接点击下载，完成后双击安装，安装直接默认 <em><strong>next</strong></em> 就好，很简单，需要改的也就是安装位置改一下，我是在D盘新建了一个文件夹 nodejs，安装在这个文件夹里。如果要看详细到每一步的话，可以看一下这个文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/antma/article/details/86104068">node.js 安装详细步骤教程</a>。</p>
+<p>安装完成可以用打开cmd检验一下是否安装成功，用 <code>node -v</code> 和 <code>npm -v</code> 命令检查版本，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050954387636.webp" alt="temp" style="zoom: 33%;" />
+
+
+
+<p>最好设置一下npm在安装全局模块时的路径和环境变量，因为如果不设置的话，安装模块的时候就会把模块装到C盘，占用C盘的空间，并且有可能安装好hexo后却无法使用，所以我们需要设置一下。在 nodejs 文件夹（nodejs安装目录）中新建两个空文件夹 node_cache、node_global，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050969673637.webp" alt="temp" style="zoom: 50%;" />
+
+
+
+<p>打开cmd，输入如下两个命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;D:\nodejs\node_global&quot;</span><br><span class="line">npm config set cache &quot;D:\nodejs\node_cache&quot;</span><br></pre></td></tr></table></figure>
+
+<p>设置环境变量：<strong>win10系统 –&gt; 打开控制面板 –&gt; 系统 –&gt;高级系统设置 –&gt; 环境变量 ，</strong>然后在系统变量中新建一个变量名为“NODE_PATH”，值为“D:\nodejs\node_global\node_modules”，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050981212838.webp" alt="temp" style="zoom:50%;" />
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050984630639.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>然后编辑用户变量里的Path，将相应npm的路径改为：D:\nodejs\node_global，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050990643340.webp" alt="temp" style="zoom:50%;" />
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050993494741.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>测试一下，更改是否成功，在 cmd 命令下执行 <code>npm install webpack -g</code> ：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051001473242.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>然后 webpack 这个模块已经在我们设置默认的文件夹中了：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051004568543.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<h4 id="node-js安装完成，接下来再安装Hexo"><a href="#node-js安装完成，接下来再安装Hexo" class="headerlink" title="node.js安装完成，接下来再安装Hexo"></a>node.js安装完成，接下来再安装Hexo</h4><p>Hexo就是我们的个人博客网站的框架，在安装之前，我们要先在GitHub上创立一个仓库，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/image-20211226172402436.png" alt="image-20211226172402436" style="zoom: 33%;" />
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051098136845.webp" alt="temp" style="zoom:33%;" />
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051303000946.webp" alt="temp" style="zoom: 33%;" />
+
+
+
+<p>接下来就是安装Hexo，首先在D盘建立一个文件夹 Blog，点开 Blog 文件夹，鼠标右键打开 Git Bush Here，输入npm命令安装Hexo：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051309489047.webp" alt="temp"></p>
+<p>安装完成后，输入 hexo init 命令初始化博客：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051312706448.webp" alt="temp" style="zoom: 50%;" />
+
+
+
+<p>然后输入 hexo g 静态部署：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051316999249.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>等部署完成，输入 hexo s 命令可以查看：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051324826250.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>浏览器输入 <a target="_blank" rel="noopener" href="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%9C%80%E5%8E%9F%E5%A7%8B%E7%9A%84%E6%95%88%E6%9E%9C%E4%BA%86">http://localhost:4000</a> 就可以打开新部署的网页，看完之后记得 ctrl +c 停止运行服务器。</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051328219251.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<h4 id="将Hexo部署到Github"><a href="#将Hexo部署到Github" class="headerlink" title="将Hexo部署到Github"></a>将Hexo部署到Github</h4><p>现在回到我们的 Blog 文件夹，用笔记本打开 _config.yml 文件，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051340980052.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>下滑到文件底部，填上如下内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/×××/×××.github.io.git  #你的仓库地址</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+
+<p>然后回到 Blog 文件夹中，打开 Git Bash，安装Git部署插件，输入命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051351096853.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>然后分别输入以下三条命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   #清除缓存文件 db.json 和已生成的静态文件 public</span><br><span class="line">hexo g       #生成网站静态文件到默认设置的 public 文件夹(hexo generate 的缩写)</span><br><span class="line">hexo d       #自动生成网站静态文件，并部署到设定的仓库(hexo deploy 的缩写)</span><br></pre></td></tr></table></figure>
+
+<p>完成以后，打开浏览器，输入 <a target="_blank" rel="noopener" href="https://fengye97.github.io/">https://xxx.github.io</a> 就可以打开你的网页了。现在虽然可以访问我们的网站，但是网址是GitHub提供的：<a target="_blank" rel="noopener" href="http://xxxx.github.io/">http://xxxx.github.io</a> 而我们想使用我们自己的个性化域名，这就需要绑定我们自己的域名。</p>
+<hr>
+<h3 id="解析域名"><a href="#解析域名" class="headerlink" title="解析域名"></a>解析域名</h3><p>第一步：登录<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/">万网</a>，点击控制台，在你已购买的域名后点击解析添加两条解析记录：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050427897022.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>那个IPV4地址可以通过ping得到，具体方法是：打开cmd输入下面命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ping</span> fengye97.github.io    #<span class="built_in">ping</span> + 你的GitHub的网址</span><br></pre></td></tr></table></figure>
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050435108323.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>第二步：打开 Blog 文件夹里的 source 文件夹，添加CNAME文件，可以先创建一个CNAME.txt文件，打开后写上你的域名，不要加www否则每次访问都必须加www，但如果不带有www，以后访问的时候带不带www都可以访问，保存后记得要重命名，将.txt删除，如下图：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050439059324.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>第三步回到 Blog 文件夹，右键打开 Git Bash，依次输入下面三条命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>打开GitHub，看看CNAME文件是否已经在你的项目中:</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164050517734229.webp" alt="temp" style="zoom:33%;" />
+
+
+
+<p>而后点击 settings 查看你的网址是否保存：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/llll.webp" alt="llll" style="zoom: 33%;" />
+
+
+
+<p>这样就完成啦！这时候你就可以浏览器直接输入你的域名就会进入你搭建的网页啦！</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-164051373844354.webp" alt="temp" style="zoom:33%;" />
+
+<hr>
+<h2 id="博客优化和美化"><a href="#博客优化和美化" class="headerlink" title="博客优化和美化"></a>博客优化和美化</h2><p>前提是你也准备使用 <strong>next</strong> 主题。根据个人需求，优化尽量做一下，美化基础的就可了。如果是想专注于内容创作，笔者窃以为花哨的特效、动效能少则少。另外，每次做完一项优化，最好就好本地构建预览一下，切勿一股脑做完后再测试，否则错误可能多到你直接想重新开始。</p>
+<h3 id="更换-next-主题"><a href="#更换-next-主题" class="headerlink" title="更换 next 主题"></a>更换 next 主题</h3><p>next 主题有多个版本，对于版本a的修改，换到版本b可能就会出问题，因此能用就行，尽量不要频繁升级、更换版本。我使用的是next(v7.7.1)，下载地址：<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">theme-next&#x2F;hexo-theme-next</a></p>
+<p>打开博客根目录Blog文件夹，右键Git Bash，输入如下代码将next主题下载到目录Blog&#x2F;themes：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405145685171.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<p>打开根目录下的_config.yml(称为<strong>站点配置文件</strong>)，修改主题（<strong>注意冒号后都要有空格</strong>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 有间  #标题</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: 若.....     #简介或者格言</span><br><span class="line">keywords:</span><br><span class="line">author: 叶三秋     #作者</span><br><span class="line">language: zh-CN     #主题语言，有些时候可能是zh-Hans，具体是什么，..\themes\next\languages 下的文件名确定</span><br><span class="line">timezone: Asia/Shanghai    #中国的时区，如果主题配置文件（在..\themes\next文件夹下，也有一个名为_config.yml的文件，里面如果修改时区，注意要和这边一致）</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: next   #主题改为next</span><br></pre></td></tr></table></figure>
+
+<p>主题语言主要是看你的themes&#x2F;next&#x2F;language中的简体中文是 zh-CN 还是 zh-Hans：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405150797032.webp" alt="temp" style="zoom: 25%;" />
+
+
+
+<p>next主题有四种风格，打开目录 ..&#x2F;themes&#x2F;next&#x2F;下的_config.yml（称为<strong>主题配置文件</strong>），只要将你选的风格前的#删除就行了，更换其他风格前，记得将现行风格前再加上#</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes   #打开主题配置文件后，搜索这个关键词就可以定位到</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini    #这是我选的主题</span><br></pre></td></tr></table></figure>
+
+<p>回到根目录打开Git Bash，输入如下三条命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>完成后打开你的博客，就已经大变样了。如果没有变化也不要着急，因为 github page 解析需要时间~</p>
+<h3 id="设置博文内链接为蓝色"><a href="#设置博文内链接为蓝色" class="headerlink" title="设置博文内链接为蓝色"></a>设置博文内链接为蓝色</h3><p>打开 <strong>themes&#x2F;next&#x2F;source&#x2F;css&#x2F;_common&#x2F;components&#x2F;post&#x2F;post.styl</strong> 文件，将下面的代码复制到文件最后：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.post-body</span> <span class="selector-tag">p</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>: <span class="number">#0593d3</span>;</span><br><span class="line">     <span class="attribute">border-bottom</span>: none;</span><br><span class="line">     &amp;<span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">       <span class="attribute">color</span>: <span class="number">#0477ab</span>;</span><br><span class="line">       <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>重新部署后，效果如下：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp.webp" alt="temp" style="zoom: 50%;" />
+
+
+
+<h3 id="设置菜单"><a href="#设置菜单" class="headerlink" title="设置菜单"></a>设置菜单</h3><p>打开主题配置文件即themes&#x2F;next下的_config.yml，查找menu，将前面的#删除就行了：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home                      #首页</span><br><span class="line">  archives: /archives/ || archive      #归档</span><br><span class="line">  categories: /categories/ || th       #分类</span><br><span class="line">  tags: /tags/ || tags                 #标签</span><br><span class="line">  about: /about/ || user               #关于</span><br><span class="line">  resources: /resources/ || download   #资源</span><br><span class="line">  #schedule: /schedule/ || calendar    #日历</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap    #站点地图，供搜索引擎爬取</span><br><span class="line">  #commonweal: /404/ || heartbeat      #腾讯公益404</span><br></pre></td></tr></table></figure>
+
+<p>“||”前面的是目标链接，后面的是图标名称，next使用的图标全是<a target="_blank" rel="noopener" href="http://www.fontawesome.com.cn/faicons/#web-application">图标库 - Font Awesome 中文网</a>这一网站的，有想用的图标直接在fontawesome上面找图标的名称就行。resources是我自己添加的。</p>
+<p>新添加的菜单需要翻译对应的中文，打开theme&#x2F;next&#x2F;languages&#x2F;zh-CN.yml，在menu下设置：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: 首页</span><br><span class="line">  archives: 归档</span><br><span class="line">  categories: 分类</span><br><span class="line">  tags: 标签</span><br><span class="line">  about: 关于</span><br><span class="line">  resources: 资源</span><br><span class="line">  search: 搜索</span><br></pre></td></tr></table></figure>
+
+<p>在根目录下打开Git Bash，输入如下代码：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;categories&quot;</span><br><span class="line">hexo new page &quot;tags&quot;</span><br><span class="line">hexo new page &quot;about&quot;</span><br><span class="line">hexo new page &quot;resources&quot;</span><br></pre></td></tr></table></figure>
+
+<p>此时在根目录的sources文件夹下会生成categories、tags、about、resources四个文件，每个文件中有一个<code>index.md</code>文件，修改内容分别如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 2020-02-10 22:07:08</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2020-02-10 22:07:08</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: 关于</span><br><span class="line">date: 2020-02-10 22:07:08</span><br><span class="line">type: &quot;about&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: 资源</span><br><span class="line">date: 2020-02-10 22:07:08</span><br><span class="line">type: &quot;resources&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>注：如果有启用评论，默认页面带有评论。需要关闭的话，添加字段comments并将值设置为false。</p>
+<h3 id="设置建站时间"><a href="#设置建站时间" class="headerlink" title="设置建站时间"></a>设置建站时间</h3><p>打开主题配置文件即themes&#x2F;next下的_config.yml，查找since：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">footer:</span><br><span class="line">  # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">  since: 2020-02   #建站时间</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h3><p>打开主题配置文件即themes&#x2F;next下的_config.yml，查找avatar，url后是图片的链接地址：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line">  url: /images/avatar.gif   #图片的位置，也可以是http://xxx.com/avatar.png</span><br><span class="line">  # If true, the avatar will be dispalyed in circle.</span><br><span class="line">  rounded: true   #头像展示在圈里</span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line">  rotated: false  #头像随光标旋转</span><br></pre></td></tr></table></figure>
+
+<p>然后将你要的头像图片复制到themes&#x2F;next&#x2F;source&#x2F;images里，重命名为avatar.png。</p>
+<h3 id="网站图标设置"><a href="#网站图标设置" class="headerlink" title="网站图标设置"></a>网站图标设置</h3><p>我是在这个网站找的图标，免费的图标素材网站：<a target="_blank" rel="noopener" href="https://www.easyicon.net/1220579-maple_leaf_icon.html">Easyicon</a></p>
+<p>下载16x16和32x32的图标后，打开主题配置文件，查找favicon，只要修改small和medium为你的图标路径：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  small: /images/favicon-16x16.png</span><br><span class="line">  medium: /images/favicon-32x32.png</span><br><span class="line">  apple_touch_icon: /images/apple-touch-icon-next.png</span><br><span class="line">  safari_pinned_tab: /images/logo.svg</span><br><span class="line">  #android_manifest: /images/manifest.json</span><br><span class="line">  #ms_browserconfig: /images/browserconfig.xml</span><br></pre></td></tr></table></figure>
+
+<h3 id="主页文章添加阴影效果"><a href="#主页文章添加阴影效果" class="headerlink" title="主页文章添加阴影效果"></a>主页文章添加阴影效果</h3><p>打开themes&#x2F;next&#x2F;source&#x2F;css&#x2F;_common&#x2F;conponents&#x2F;post&#x2F;post.styl，修改.post-block，如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.use-motion &#123;</span><br><span class="line">  if (hexo-config(&#x27;motion.transition.post_block&#x27;)) &#123;</span><br><span class="line">    .post-block &#123;</span><br><span class="line">      opacity: 0;</span><br><span class="line">      margin-top: 60px;</span><br><span class="line">      margin-bottom: 60px;</span><br><span class="line">      padding: 25px;</span><br><span class="line">      background:rgba(255,255,255,0.9) none repeat scroll !important;</span><br><span class="line">      -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);</span><br><span class="line">      -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    .pagination, .comments&#123;</span><br><span class="line">      opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加顶部加载条"><a href="#添加顶部加载条" class="headerlink" title="添加顶部加载条"></a>添加顶部加载条</h3><p>在themes&#x2F;next目录下打开Git Bash，输入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/theme-next-pace source/lib/pace</span><br></pre></td></tr></table></figure>
+
+<p>打开<strong>主题配置文件</strong>即themes&#x2F;next下的_config.yml，找到pace，将enable：false改为true，你还可以选择类型（theme）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  # Themes list:</span><br><span class="line">  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple</span><br><span class="line">  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal</span><br><span class="line">  theme: minimal</span><br></pre></td></tr></table></figure>
+
+<p>效果预览：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405232840148.webp" alt="temp" style="zoom: 33%;" />
+
+<h3 id="设置预览摘要"><a href="#设置预览摘要" class="headerlink" title="设置预览摘要"></a>设置预览摘要</h3><p>next（v7.7.1）已经没有如下代码：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
+
+<p>所以不需要设置，只要我们在文章中插入 <!-- more -->，该标签之上的是摘要，之后的内容不可见，需点击全文阅读按钮：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果预览：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405233539459.webp" alt="temp" style="zoom: 50%;" />
+
+<h3 id="设置侧边栏显示效果"><a href="#设置侧边栏显示效果" class="headerlink" title="设置侧边栏显示效果"></a>设置侧边栏显示效果</h3><p>打开<strong>主题配置文件</strong>即themes&#x2F;next下的_config.yml，找到Sidebar Settings，设置：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position. #设置侧边栏位置</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  #  - post    默认显示模式</span><br><span class="line">  #  - always  一直显示</span><br><span class="line">  #  - hide    初始隐藏</span><br><span class="line">  #  - remove  移除侧边栏</span><br><span class="line">  display: post</span><br></pre></td></tr></table></figure>
+
+<h3 id="文章末尾添加版权说明"><a href="#文章末尾添加版权说明" class="headerlink" title="文章末尾添加版权说明"></a>文章末尾添加版权说明</h3><p>查找<strong>主题配置文件</strong>themes&#x2F;next&#x2F;_config.yml中的creative_commons：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">creative_commons:</span><br><span class="line">  license: by-nc-sa</span><br><span class="line">  sidebar: false</span><br><span class="line">  post: true  # 将false改为true即可显示版权信息</span><br><span class="line">  language:</span><br></pre></td></tr></table></figure>
+
+<p>然后修改站点配置文件 _config.yml：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span><br><span class="line">url: http://ereryuyezi.cn      #将此处修改为你购买的域名</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line">pretty_urls:</span><br><span class="line">  trailing_index: true # Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br><span class="line">  trailing_html: true # Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></pre></td></tr></table></figure>
+
+
+
+<p>预览效果：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405220285064.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<h3 id="开启RSS订阅"><a href="#开启RSS订阅" class="headerlink" title="开启RSS订阅"></a>开启RSS订阅</h3><p>首先添加插件，在hexo根目录下执行：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-generator-feed</span><br></pre></td></tr></table></figure>
+
+<p>修改站点 _config.yml 文件，启用插件</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">plugins:</span><br><span class="line">  hexo-generator-feed</span><br><span class="line"></span><br><span class="line">#Feed Atom</span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre></td></tr></table></figure>
+
+<p>打开<strong>主题配置文件，</strong>搜索rss，将前面的#去掉：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">follow_me:</span><br><span class="line">  #Twitter: https://twitter.com/username || twitter</span><br><span class="line">  #Telegram: https://t.me/channel_name || telegram</span><br><span class="line">  微信: /images/wechat_channel.jpg || wechat</span><br><span class="line">  RSS: /atom.xml || rss</span><br></pre></td></tr></table></figure>
+
+<p>效果预览：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405228447885.webp" alt="temp" style="zoom:50%;" />
+
+
+
+<h3 id="博文置顶"><a href="#博文置顶" class="headerlink" title="博文置顶"></a>博文置顶</h3><p>在根目录Blog打开Git Bash，执行下面的命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-index-pin-top --save</span><br></pre></td></tr></table></figure>
+
+<p>打开blog&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_macro目录下的post.swig文件，定位到 <div class="post-meta"> 标签下，插入如下代码：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if post.top %&#125;</span><br><span class="line">  &lt;i class=&quot;fa fa-thumb-tack&quot;&gt;&lt;/i&gt;</span><br><span class="line">  &lt;font color=7D26CD&gt;置顶&lt;/font&gt;</span><br><span class="line">  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在需要置顶的文章的Front-matter中加上top: true即可，如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line"></span><br><span class="line">top: true</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>效果预览：</p>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16405231018276.webp" alt="temp" style="zoom:50%;" />
+
+<h3 id="Typora设置"><a href="#Typora设置" class="headerlink" title="Typora设置"></a>Typora设置</h3><p>在使用了hexo搭建了博客后，最大的问题便是如何使用一款markdown工具来编辑博客了，我采取的就是Typora。关于图片和图片路径的设置如下。事先声明，所有博客文件均保存在 <strong>hexo&#x2F;_posts&#x2F;</strong> 文件夹下。</p>
+<ul>
+<li><p>配置<code>post_asset_folder</code>参数：</p>
+<p>打开站点配置文件 <strong>_config.yml</strong> 文件 查找 <code>post_asset_folder</code> 字段确定 post_asset_folder设置为true。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copypost_asset_folder:true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装插件,到博客的根目录下执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copynpm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>效果：</p>
+<p>然后创建文章 <code>hexo new 博文名称</code> 时，例如：<code>hexo new tes</code> 会在 <strong>&#x2F;source&#x2F;_posts</strong> 目录下创建一个 test 文件夹 和 test.md 文件。然后打开Typora的 <strong>文件 &gt; 偏好设置 &gt; 图像</strong> ，进行如下设置  <strong>..&#x2F;..&#x2F;source&#x2F;_posts&#x2F;${filename}</strong></p>
+</li>
+</ul>
+<img src="%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/temp-16404204073192.webp" alt="temp" style="zoom:50%;" />
+
+
+
+
+
+
+
+<hr>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>叶三秋
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://ereryuyezi.cn/2021/12/22/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" title="建站记录">http://ereryuyezi.cn/2021/12/22/建站记录/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/05/%E8%8B%A5%E7%B9%81%E6%98%9F%E8%88%AC%E7%9A%84%E4%BD%A0%E6%94%B6%E8%97%8F%E5%BF%83%E5%BA%95/" rel="next" title="收藏繁星般璀璨的你于心底">
+      收藏繁星般璀璨的你于心底 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E8%AE%B0%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">错误记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E6%88%B7"><span class="nav-number">4.1.</span> <span class="nav-text">注册Github账户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">4.2.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git%E5%92%8CGithub%E7%9A%84%E7%BB%91%E5%AE%9A%EF%BC%8C%E5%B9%B6%E9%80%9A%E8%BF%87Git%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-number">4.3.</span> <span class="nav-text">Git和Github的绑定，并通过Git提交文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E5%9F%9F%E5%90%8D"><span class="nav-number">4.4.</span> <span class="nav-text">购买域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js%E5%92%8CHexo"><span class="nav-number">4.5.</span> <span class="nav-text">安装node.js和Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#node-js%E5%AE%89%E8%A3%85"><span class="nav-number">4.5.1.</span> <span class="nav-text">node.js安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#node-js%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%EF%BC%8C%E6%8E%A5%E4%B8%8B%E6%9D%A5%E5%86%8D%E5%AE%89%E8%A3%85Hexo"><span class="nav-number">4.5.2.</span> <span class="nav-text">node.js安装完成，接下来再安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86Hexo%E9%83%A8%E7%BD%B2%E5%88%B0Github"><span class="nav-number">4.5.3.</span> <span class="nav-text">将Hexo部署到Github</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">4.6.</span> <span class="nav-text">解析域名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E5%92%8C%E7%BE%8E%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">博客优化和美化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2-next-%E4%B8%BB%E9%A2%98"><span class="nav-number">5.1.</span> <span class="nav-text">更换 next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%8D%9A%E6%96%87%E5%86%85%E9%93%BE%E6%8E%A5%E4%B8%BA%E8%93%9D%E8%89%B2"><span class="nav-number">5.2.</span> <span class="nav-text">设置博文内链接为蓝色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%8F%9C%E5%8D%95"><span class="nav-number">5.3.</span> <span class="nav-text">设置菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%BB%BA%E7%AB%99%E6%97%B6%E9%97%B4"><span class="nav-number">5.4.</span> <span class="nav-text">设置建站时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%A4%B4%E5%83%8F"><span class="nav-number">5.5.</span> <span class="nav-text">设置头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.6.</span> <span class="nav-text">网站图标设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%A1%B5%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C"><span class="nav-number">5.7.</span> <span class="nav-text">主页文章添加阴影效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%A1%B6%E9%83%A8%E5%8A%A0%E8%BD%BD%E6%9D%A1"><span class="nav-number">5.8.</span> <span class="nav-text">添加顶部加载条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%A2%84%E8%A7%88%E6%91%98%E8%A6%81"><span class="nav-number">5.9.</span> <span class="nav-text">设置预览摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C"><span class="nav-number">5.10.</span> <span class="nav-text">设置侧边栏显示效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="nav-number">5.11.</span> <span class="nav-text">文章末尾添加版权说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AFRSS%E8%AE%A2%E9%98%85"><span class="nav-number">5.12.</span> <span class="nav-text">开启RSS订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E6%96%87%E7%BD%AE%E9%A1%B6"><span class="nav-number">5.13.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Typora%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.14.</span> <span class="nav-text">Typora设置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="叶三秋"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">叶三秋</p>
+  <div class="site-description" itemprop="description">若炬火不在，则你我皆是微芒</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶三秋</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
